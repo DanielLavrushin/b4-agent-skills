@@ -1,0 +1,17 @@
+{
+  "name": "b4-agent-skills",
+  "owner": {
+    "name": "Daniel Lavrushin",
+    "url": "https://github.com/DanielLavrushin"
+  },
+  "description": "Skills that help an AI assistant check and adjust b4 on your router through b4's MCP server.",
+  "plugins": [
+    {
+      "name": "b4",
+      "source": "./",
+      "description": "Troubleshooting and traffic-routing procedures for b4, using b4's MCP tools.",
+      "category": "networking",
+      "homepage": "https://github.com/DanielLavrushin/b4-agent-skills"
+    }
+  ]
+}

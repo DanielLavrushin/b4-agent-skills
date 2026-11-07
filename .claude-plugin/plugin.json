@@ -1,0 +1,12 @@
+{
+  "name": "b4",
+  "version": "0.1.0",
+  "description": "Troubleshooting and traffic-routing procedures for b4, using b4's MCP tools.",
+  "author": {
+    "name": "Daniel Lavrushin",
+    "url": "https://github.com/DanielLavrushin"
+  },
+  "homepage": "https://github.com/DanielLavrushin/b4-agent-skills",
+  "repository": "https://github.com/DanielLavrushin/b4-agent-skills",
+  "keywords": ["b4", "dpi", "router", "mcp", "routing"]
+}
