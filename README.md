@@ -43,7 +43,7 @@ After turning a switch on, reconnect the AI app to the MCP server so it gets the
 | --- | --- | --- |
 | Claude Code | yes | Tested. Install with the skills CLI or as a plugin. |
 | ChatGPT desktop app | yes | Tested. The app reads this repository's plugin marketplace and lists the `b4` plugin with its skills. It runs MCP servers from its local configuration, which it shares with Codex. |
-| Antigravity CLI | yes | Tested: the plugin loads and its skills run. Its connection to b4 currently fails on a protocol message that b4 rejects, see [b4 issue #533](https://github.com/DanielLavrushin/b4/issues/533); until that is fixed, b4-connect explains the failure. |
+| Antigravity CLI | yes | Tested: the plugin loads and its skills run. Its connection to b4 needs b4 1.90.0 or later; earlier versions reject one of its protocol messages ([b4 issue #533](https://github.com/DanielLavrushin/b4/issues/533)). |
 | Claude Desktop | yes | The Code tab works like Claude Code. In Chat, the plugin installs under **Customize > Plugins**, and b4 is reached through a local bridge such as [mcp-remote](https://github.com/geelen/mcp-remote) in the app's configuration file, which passes the token as an `Authorization` header; connectors added in Settings connect from Anthropic's cloud and cannot reach a router on a home network. Not tested. |
 | Codex CLI, Gemini CLI, Cursor, VS Code with GitHub Copilot | yes | These apps load Agent Skills; install with the skills CLI. Not tested with b4. |
 | claude.ai | no | Its connectors connect from Anthropic's cloud and cannot reach a router on a home network. |
