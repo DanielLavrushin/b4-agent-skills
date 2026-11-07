@@ -6,7 +6,7 @@ compatibility: Needs a connection to b4's MCP server (the b4_* tools). Probes ne
 
 # Troubleshooting b4
 
-b4 is a DPI-bypass and traffic-routing service on the user's router. Its MCP tools read its state; with the user's permission switches on, they can also test a site and change settings. Reply in the user's language. When you reply in Russian, use the labels of b4's Russian interface: Settings > Integrations > MCP server = Настройки > Интеграции > MCP-сервер; Allow configuration changes = Разрешить изменение настроек; Allow active probes = Разрешить активные проверки; System Info under Settings > System > Service = Информация о системе в Настройки > Система > Сервис; Copy JSON = Копировать JSON; Import/Export = Импорт/Экспорт; Discovery = Дискавери.
+b4 is a DPI-bypass and traffic-routing service on the user's router. Its MCP tools read its state; with the user's permission switches on, they can also test a site and change settings. Reply in the user's language. When you reply in Russian, use the labels of b4's Russian interface: Settings > Integrations > MCP server = Настройки > Интеграции > MCP-сервер; Allow configuration changes = Разрешить изменение настроек; Allow active probes = Разрешить активные проверки; System Info under Settings > System > Service = Информация о системе в Настройки > Система > Сервис; Copy JSON = Копировать JSON; Import/Export = Импорт/Экспорт; Discovery = Дискавери. Sets = Сеты (a top-level page, not under Settings); Logs = Логи (a top-level page with Start trace = Начать трассировку); Log Level = Уровень логирования (Settings > System > Service); Update available = Доступно обновление.
 
 ## 0. Check the tools first
 
@@ -32,7 +32,7 @@ Only `b4_test_domain_now` answers "does it load". Everything else is evidence ab
 3. **Read log lines literally.** Quote the exact line. The host name, address, path or command inside an error is what b4 actually tried to use; compare it character by character with what the user meant.
 4. **The site**: `b4_check_domain` for the name, then `b4_get_set` for the set that covers it. Before saying anything about a setting, call `b4_get_topic` with its dotted key (for example `topic="tcp.conn_bytes_limit"`). A `query=` search matches one exact substring, so if it finds nothing, retry with the dotted key or call `b4_get_topic` with no arguments to list the keys. Never infer a unit, a default or the meaning of a number from a field name.
 5. **Traffic**: ask the user to open the site once more, then call `b4_recent_connections` with `contains` set to the domain, then to the client's address. The list holds only the last 500 events, so an empty result means "nothing in that window", not "never reached b4".
-6. **The installed version**: compare `b4_status.version` with the release notes at https://github.com/DanielLavrushin/b4/blob/main/changelog.md (raw text: https://raw.githubusercontent.com/DanielLavrushin/b4/main/changelog.md; Russian: changelog_ru.md). Look for FIXED entries newer than the installed version that match the symptom. If you cannot read web pages, say which version is installed and ask the user to update to the latest release and test again before deeper changes.
+6. **The installed version**: compare `b4_status.version` with the latest release. The released versions are at https://github.com/DanielLavrushin/b4/releases (the one marked Latest), and the bottom of b4's side menu reads **Update available** when a newer stable release exists. `changelog.md` on main lists versions that are not released yet, with dates, so never take its top entry for the latest release; read it only for what a version fixed. If you cannot open the releases page, ask the user what the side menu shows. For fixes, read https://raw.githubusercontent.com/DanielLavrushin/b4/main/changelog.md (Russian: changelog_ru.md) for FIXED entries between the installed version and the latest release that match the symptom.
 7. **Other software on the router**: b4 shares the firewall and the packet path with the firmware and other tools. When the evidence does not fit b4's own configuration (connection sources that are not LAN devices, packets that never reach b4, a firewall flag `diagnostics` reports as unsafe), ask the user what else handles traffic on the router: VPN clients, other transparent proxies, hardware or software acceleration in the firmware. Do not blame b4 or the other tool before the user answers.
 
 ## 3. Probes and Discovery
@@ -68,6 +68,7 @@ Stop and give the user a diagnosis when one of these holds:
 
 ## 6. Never claim
 
+- that you can change a setting when the write tools (`b4_set_config_value`, `b4_edit_set_targets`, `b4_manage_set`) are not in your tool list, whatever `b4_status` reports;
 - that a site loads or works, unless `b4_test_domain_now` through b4 succeeded;
 - that b4 "is working" because `b4_status` or `b4_diagnostics` look fine;
 - that a change fixed anything before it was tested;

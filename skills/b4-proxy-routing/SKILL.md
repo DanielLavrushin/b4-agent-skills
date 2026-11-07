@@ -6,7 +6,7 @@ compatibility: Needs a connection to b4's MCP server (the b4_* tools). Changes n
 
 # Routing sites and devices with b4 sets
 
-b4 is a DPI-bypass and traffic-routing service on the user's router. A set's `routing` block can send what the set matches out of a VPN interface, to a SOCKS5 upstream, over Telegram's WebSocket edge, or drop it. Reply in the user's language. When you reply in Russian, use the labels of b4's Russian interface: Settings > Integrations > MCP server = Настройки > Интеграции > MCP-сервер; Allow configuration changes = Разрешить изменение настроек; Allow active probes = Разрешить активные проверки; System Info under Settings > System > Service = Информация о системе в Настройки > Система > Сервис; Copy JSON = Копировать JSON; Import/Export = Импорт/Экспорт; Discovery = Дискавери.
+b4 is a DPI-bypass and traffic-routing service on the user's router. A set's `routing` block can send what the set matches out of a VPN interface, to a SOCKS5 upstream, over Telegram's WebSocket edge, or drop it. Reply in the user's language. When you reply in Russian, use the labels of b4's Russian interface: Settings > Integrations > MCP server = Настройки > Интеграции > MCP-сервер; Allow configuration changes = Разрешить изменение настроек; Allow active probes = Разрешить активные проверки; System Info under Settings > System > Service = Информация о системе в Настройки > Система > Сервис; Copy JSON = Копировать JSON; Import/Export = Импорт/Экспорт; Discovery = Дискавери. Sets = Сеты (a top-level page, not under Settings); Logs = Логи (a top-level page with Start trace = Начать трассировку); Log Level = Уровень логирования (Settings > System > Service); Update available = Доступно обновление.
 
 ## 0. Check the tools first
 
@@ -45,7 +45,7 @@ Do not assume list order decides. The rules for name matches against address mat
 - **Capability**: a routing mode that needs a kernel capability does nothing when `b4_diagnostics` reports it unavailable. Report the capability and its `detail` as they stand.
 - **Rules installed**: `firewall.routing` in `b4_diagnostics` compares `sets` (the routing sets the configuration wants) with `installed`; when they differ, `error`, `set_errors` and `missing_tool` say why, and the error log usually has the full line.
 - **Catch-all targets**: if a routing set lists `0.0.0.0/0` or `::/0`, read `routing.source_interfaces` and `routing.router_traffic` before anything else: they decide whether the router's own traffic, its DNS included, is sent the same way. Check this first when DNS or the whole network broke right after a routing set was turned on.
-- **The installed version**: compare `b4_status.version` with the release notes at https://github.com/DanielLavrushin/b4/blob/main/changelog.md (raw text: https://raw.githubusercontent.com/DanielLavrushin/b4/main/changelog.md). Look for FIXED entries newer than the installed version that match the symptom. If you cannot read web pages, say which version is installed and suggest updating to the latest release and testing again.
+- **The installed version**: compare `b4_status.version` with the latest release. The released versions are at https://github.com/DanielLavrushin/b4/releases (the one marked Latest), and the bottom of b4's side menu reads **Update available** when a newer stable release exists. `changelog.md` on main lists versions that are not released yet, with dates, so never take its top entry for the latest release; read it only for what a version fixed. If you cannot open the releases page, ask the user what the side menu shows. For fixes, read https://raw.githubusercontent.com/DanielLavrushin/b4/main/changelog.md. Look for FIXED entries newer than the installed version that match the symptom. If you cannot read web pages, say which version is installed and suggest updating to the latest release and testing again.
 - **DNS**: a set that targets names also routes the addresses b4 learns for them, from the DNS answers it sees among other sources (see the topic `routing.ip_ttl_seconds`). If those addresses never show up in the set's traffic, ask the user how devices and the router resolve names (the router's resolver, a local DNS or DoH proxy, DNS set in the devices) before changing the set. Read `dns.enabled` and `dns.target_dns` with `b4_get_topic` if the set uses its own DNS.
 
 ## 5. Changing sets
@@ -68,6 +68,7 @@ Only when the user asks, and only if `b4_status` reports `you_can_change_setting
 
 ## 7. Never claim
 
+- that you can change a setting when the write tools (`b4_set_config_value`, `b4_edit_set_targets`, `b4_manage_set`) are not in your tool list, whatever `b4_status` reports;
 - that traffic goes through the VPN or proxy unless `b4_recent_connections` shows the connection handled by that set;
 - which set wins without having read the matching topics and the user's set list;
 - a setting's default, unit or effect without `b4_get_topic`;

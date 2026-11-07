@@ -1,0 +1,33 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "b4",
+  "version": "0.2.0",
+  "description": "Procedures for b4 through its MCP server: troubleshooting, traffic routing, connecting an AI app, bug reports, finding an app's hosts, unblocking a site.",
+  "author": {
+    "name": "Daniel Lavrushin",
+    "url": "https://github.com/DanielLavrushin"
+  },
+  "homepage": "https://github.com/DanielLavrushin/b4-agent-skills",
+  "repository": "https://github.com/DanielLavrushin/b4-agent-skills",
+  "keywords": [
+    "b4",
+    "dpi",
+    "router",
+    "mcp",
+    "routing"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "b4",
+        "shortDescription": "Check and adjust b4 on your router through its MCP server",
+        "longDescription": "Procedures for b4, the DPI-bypass and traffic-routing service on your router, through its built-in MCP server: connecting an AI app, troubleshooting, unblocking a site, routing through a VPN or SOCKS5, finding an app's hosts and writing a bug report.",
+        "developerName": "Daniel Lavrushin",
+        "websiteURL": "https://github.com/DanielLavrushin/b4-agent-skills",
+        "brandColor": "#9E1C60",
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

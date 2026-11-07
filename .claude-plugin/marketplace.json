@@ -9,7 +9,7 @@
     {
       "name": "b4",
       "source": "./",
-      "description": "Troubleshooting and traffic-routing procedures for b4, using b4's MCP tools.",
+      "description": "Procedures for b4 through its MCP server: troubleshooting, traffic routing, connecting an AI app, bug reports, finding an app's hosts, unblocking a site.",
       "category": "networking",
       "homepage": "https://github.com/DanielLavrushin/b4-agent-skills"
     }
