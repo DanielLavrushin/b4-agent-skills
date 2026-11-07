@@ -10,7 +10,7 @@ b4 is a DPI-bypass and traffic-routing service on the user's router. A set's `ro
 
 ## 0. Check the tools first
 
-Look for `b4_status` in your tool list. If no b4 tools are available, do not guess at b4's configuration. Tell the user that this app is not connected to b4's MCP server and point them to https://docs.b4core.app/docs/settings/mcp/ (Russian: https://docs.b4core.app/ru/docs/settings/mcp/).
+Some apps load MCP tools only on demand, or put the server name in front of the tool name (for example `mcp__b4__b4_status`). Look for any tool whose name ends in `b4_status`, use the app's tool search if it has one, or simply call `b4_status`. Only if none of that works, do not guess at b4's configuration. Tell the user that this chat has no working connection to b4's MCP server: either it is not set up in this app, or it is set up but failed to start (in ChatGPT and Codex, `/mcp` lists the connected servers). Point them to the b4-connect skill if it is installed, and to the setup page: https://docs.b4core.app/docs/settings/mcp/ (Russian: https://docs.b4core.app/ru/docs/settings/mcp/).
 
 ## 1. Read before you explain
 

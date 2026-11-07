@@ -41,7 +41,8 @@ After turning a switch on, reconnect the AI app to the MCP server so it gets the
 | Claude Desktop | yes | The Code tab works like Claude Code. In Chat, the plugin installs under **Customize > Plugins**, and b4 is reached through a local bridge such as [mcp-remote](https://github.com/geelen/mcp-remote) in the app's configuration file, which passes the token as an `Authorization` header; connectors added in Settings connect from Anthropic's cloud and cannot reach a router on a home network. Not tested. |
 | claude.ai | no | Its connectors connect from Anthropic's cloud and cannot reach a router on a home network. |
 | Codex CLI, Gemini CLI, Cursor, VS Code with GitHub Copilot | yes | These apps load Agent Skills; install with the skills CLI. Not tested with b4. |
-| ChatGPT | no | Custom MCP connections are made from OpenAI's cloud and need a public HTTPS address or OpenAI's tunnel, so a router on a home network is not reachable. |
+| ChatGPT desktop app | yes | Tested. The app reads this repository's plugin marketplace and lists the `b4` plugin with both skills. It runs MCP servers from its local configuration, which it shares with Codex. |
+| ChatGPT on the web | no | Custom MCP connections are made from OpenAI's cloud and need a public HTTPS address or OpenAI's tunnel, so a router on a home network is not reachable. |
 | LM Studio, Jan | no | They do not load skills. The text of a SKILL.md can go into the system prompt or the assistant's instructions. In testing, a small local model (llama3.2, 3B) could not complete these tasks with or without it. |
 | Ollama | no | Ollama on its own does not connect to MCP servers. |
 | b4's built-in AI explanations | no | They explain settings in the web interface and do not use b4's tools. |
@@ -78,6 +79,14 @@ Or from a terminal:
 ```sh
 claude plugin marketplace add DanielLavrushin/b4-agent-skills
 claude plugin install b4@b4-agent-skills
+```
+
+### In the ChatGPT desktop app
+
+Add the marketplace with the Codex CLI, restart the ChatGPT desktop app, then open **Plugins**, choose the `b4-agent-skills` source and install `b4`:
+
+```sh
+codex plugin marketplace add DanielLavrushin/b4-agent-skills
 ```
 
 ## Using the skills
